@@ -1,0 +1,53 @@
+# --- PUBLIC INTERFACE ---
+SetLevel = func(level) {
+    if level not in keys(_levels) {
+        error("Logger Error: Invalid level " + level)
+    }
+
+    target_weight = _levels[level]
+
+    for _levels as lvl, weight {
+        if weight >= target_weight {
+            _logger[lvl] = _GetLevelFunction(lvl)
+        } else {
+            _logger[lvl] = func(msg) { return true }
+        }
+    }
+    return true
+}
+
+Debug = func(msg) { return _logger["DEBUG"](msg) }
+Info  = func(msg) { return _logger["INFO"](msg) }
+Warn  = func(msg) { return _logger["WARN"](msg) }
+Error = func(msg) { return _logger["ERROR"](msg) }
+Fatal = func(msg) { return _logger["FATAL"](msg) }
+
+
+# --- PRIVATE ---
+_log = func(level, msg) {
+    print("[" + level + "] " + msg)
+    return true 
+}
+
+_levels = {
+    "DEBUG": 10,
+    "INFO":  20,
+    "WARN":  30,
+    "ERROR": 40,
+    "FATAL": 50,
+}
+
+_GetLevelFunction = func(level) {
+    return func(msg) {
+        _log(level, msg)
+        return true
+    }
+}
+
+_logger = {
+    "DEBUG": _GetLevelFunction("DEBUG"),
+    "INFO":  _GetLevelFunction("INFO"),
+    "WARN":  _GetLevelFunction("WARN"),
+    "ERROR": _GetLevelFunction("ERROR"),
+    "FATAL": _GetLevelFunction("FATAL"),
+}
