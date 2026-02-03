@@ -1,0 +1,16 @@
+{
+	"records": [
+		{
+			"key": "test\\enforce-tfe-project-name\\test\\Logger",
+			"source": "../../../../../modules/logger/logger.sentinel",
+			"sourceSum": "",
+			"dest": "C:/Users/edwardsl/Pictures/sentinel-policies/modules/logger/logger.sentinel"
+		},
+		{
+			"key": "test\\enforce-tfe-project-name\\test\\logger",
+			"source": "../../../../../modules/logger/logger.sentinel",
+			"sourceSum": "",
+			"dest": "C:/Users/edwardsl/Pictures/sentinel-policies/modules/logger/logger.sentinel"
+		}
+	]
+}
